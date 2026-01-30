@@ -49,7 +49,11 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📍 Health check: http://localhost:${PORT}/health`);
-  console.log(`📝 Summarize: http://localhost:${PORT}/api/summarize`);
-  console.log(`💬 Portfolio Chat: http://localhost:${PORT}/api/portfolio/chat`);
 });
+
+// To this:
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
